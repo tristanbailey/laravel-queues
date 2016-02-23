@@ -19,7 +19,7 @@ class HomeController extends Controller
 
     public function send()
     {
-        Log::info("Email sending started");
+        Log::info("Email sending without Queues started");
         Mail::send('email.welcome', ['data'=>'data'], function ($message) {
 
             $message->from('nwambachristian@gmail.com', 'Christian Nwmaba');
@@ -27,7 +27,7 @@ class HomeController extends Controller
             $message->to('nwambachristian@gmail.com');
 
         });
-        Log::info("Email sending finished");
+        Log::info("Email sending without Queues finished");
     }
 
 
