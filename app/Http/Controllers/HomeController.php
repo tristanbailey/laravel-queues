@@ -20,12 +20,9 @@ class HomeController extends Controller
 
     public function send()
     {
-        // Logic needed by the mailer is processed here and passed as argument
-        // In our case none, so no argument
-
-        Log::info("Request Cycle Begins");
+        Log::info("Request Cycle with Queues Begins");
         $this->dispatch((new SendWelcomeEmail())->delay(60 * 5));
-        Log::info("Request Cycle Ends");
+        Log::info("Request Cycle with Queues Ends");
     }
 
 
