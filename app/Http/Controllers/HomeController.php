@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendWelcomeEmail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use App\Http\Requests;
@@ -19,15 +20,12 @@ class HomeController extends Controller
 
     public function send()
     {
-        Log::info("Email sending started");
-        Mail::send('email.welcome', ['data'=>'data'], function ($message) {
+        // Logic needed by the mailer is processed here and passed as argument
+        // In our case none, so no argument
 
-            $message->from('nwambachristian@gmail.com', 'Christian Nwmaba');
-
-            $message->to('nwambachristian@gmail.com');
-
-        });
-        Log::info("Email sending finished");
+        Log::info("Request Cycle Begins");
+        $this->dispatch((new SendWelcomeEmail())->delay(60 * 5));
+        Log::info("Request Cycle Ends");
     }
 
 
